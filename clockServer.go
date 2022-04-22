@@ -23,7 +23,7 @@ func handleConn(c net.Conn, loc *time.Location) {
 }
 
 func main() {
-	p := flag.Int("p", 0, "Port in whic the server will run")
+	p := flag.Int("port", 0, "Port in whic the server will run")
 	flag.Parse()
 	if *p <= 0 {
 		log.Fatal("Invalid port")

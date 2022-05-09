@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func dialClock(zone, address string, printer chan string) {
+func dialClock(address string, printer chan string) {
 
 	conn, err := net.Dial("tcp", address)
 	if err != nil {
@@ -23,7 +23,7 @@ func dialClock(zone, address string, printer chan string) {
 			return
 		}
 
-		printer <- fmt.Sprintf("%v\t : %s", zone, buf)
+		printer <- string(buf)
 	}
 }
 
@@ -36,7 +36,7 @@ func main() {
 		if len(v) != 2 {
 			fmt.Printf("Invalid argument `%v`, skipping\n", arg)
 		}
-		go dialClock(v[0], v[1], times)
+		go dialClock(v[1], times)
 	}
 
 	for time := range times {

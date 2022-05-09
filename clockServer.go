@@ -14,7 +14,7 @@ import (
 func handleConn(c net.Conn, loc *time.Location) {
 	defer c.Close()
 	for {
-		_, err := io.WriteString(c, time.Now().In(loc).Format("15:04:05\n"))
+		_, err := io.WriteString(c, fmt.Sprintf("%s\t : %s", loc, time.Now().In(loc).Format("15:04:05\n")))
 		if err != nil {
 			return // e.g., client disconnected
 		}

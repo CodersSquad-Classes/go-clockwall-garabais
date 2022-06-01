@@ -28,7 +28,7 @@ func main() {
 	if *p <= 0 {
 		log.Fatal("Invalid port")
 	}
-	listener, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *p))
+	listener, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", *p))
 	if err != nil {
 		log.Fatal(err)
 	}
